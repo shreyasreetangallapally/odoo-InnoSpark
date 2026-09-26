@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StockSense — Inventory Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="toast-root"></div>
+
+<aside class="sidebar">
+  <div>
+    <div class="brand">
+      <div class="brand-mark"><span class="material-symbols-outlined">inventory_2</span></div>
+      <div><b>StockSense</b><small>Know stock. Move smarter.</small></div>
+    </div>
+
+    <nav>
+      <div class="nav-group">
+        <span class="nav-label">Inventory</span>
+        <a data-page="dashboard" class="nav-link active"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+        <a data-page="products" class="nav-link"><span class="material-symbols-outlined">inventory_2</span>Products</a>
+        <a data-page="where" class="nav-link"><span class="material-symbols-outlined">location_searching</span>Where is my product?</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-label">Operations</span>
+        <a data-page="receipts" class="nav-link"><span class="material-symbols-outlined">move_to_inbox</span>Receipts</a>
+        <a data-page="deliveries" class="nav-link"><span class="material-symbols-outlined">local_shipping</span>Deliveries</a>
+        <a data-page="transfers" class="nav-link"><span class="material-symbols-outlined">swap_horiz</span>Transfers</a>
+        <a data-page="adjustments" class="nav-link"><span class="material-symbols-outlined">tune</span>Adjustments</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-label">Insights & System</span>
+        <a data-page="ledger" class="nav-link"><span class="material-symbols-outlined">table_chart</span>Stock Ledger</a>
+        <a data-page="notifications" class="nav-link"><span class="material-symbols-outlined">notifications</span>Notifications <em>4</em></a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="profile">
+    <div class="avatar">S</div>
+    <div><b>Stock Manager</b><small>OWNER / MANAGER</small></div>
+    <span class="material-symbols-outlined">settings</span>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="breadcrumbs"><span>StockSense</span><i>›</i><b id="crumb">Overview</b></div>
+  <div class="top-actions">
+    <div class="sync"><span></span>Live Sync Active</div>
+    <div class="warehouse"><span class="material-symbols-outlined">warehouse</span>Main Hub <b>⌄</b></div>
+    <button class="icon-btn" onclick="showToast('No new critical notifications')"><span class="material-symbols-outlined">notifications</span><b class="dot"></b></button>
+    <button class="primary-btn" onclick="openQuick()">+ Quick Movement</button>
+    <div class="mini-avatar">S</div>
+  </div>
+</header>
+
+<main class="main" id="app"></main>
+
+<div class="modal-backdrop" id="quick-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuick()">×</button>
+    <span class="eyebrow">QUICK ACTION</span>
+    <h2>What would you like to do?</h2>
+    <div class="quick-grid">
+      <button onclick="go('receipts');closeQuick()">＋ Receive stock</button>
+      <button onclick="go('deliveries');closeQuick()">→ Create delivery</button>
+      <button onclick="go('transfers');closeQuick()">⇄ Transfer stock</button>
+      <button onclick="go('adjustments');closeQuick()">⚙ Adjust inventory</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
