@@ -10,12 +10,23 @@ from app.routers.adjustments import router as adjustments_router
 from app.routers.stock import router as stock_router
 from app.auth.security import get_current_user
 from app.routers import ledger
-
-
+from app.routers.intelligence import router as intelligence_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Odoo InnoSpark API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(products_router)
+app.include_router(intelligence_router)
 app.include_router(warehouses_router)
 app.include_router(rooms_router)
 app.include_router(receipts_router)
