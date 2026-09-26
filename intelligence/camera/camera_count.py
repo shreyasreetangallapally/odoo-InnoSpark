@@ -25,13 +25,11 @@ def start_camera():
         results = model(frame)
 
         # Draw bounding boxes
-        annotated_frame = results[0].plot(
-             colors=[(144, 238, 144)]
-        )
+        annotated_frame = results[0].plot()
 
         # Count detected classes
         object_counts = {}
-        
+
         for box in results[0].boxes:
             class_id = int(box.cls[0])
             class_name = model.names[class_id]
